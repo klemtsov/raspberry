@@ -14,6 +14,11 @@ public class Triggers {
     private GpioController gpioController;
     private GpioPinDigitalInput btn;
     private GpioPinDigitalOutput led;
+    private GpioPinDigitalInput enRPin;
+    private GpioPinDigitalInput enLPin;
+    private GpioPinDigitalOutput enCPin;
+    private int encoderCounter = 0;
+
 
     @PostConstruct
     public void init(){
@@ -42,9 +47,33 @@ public class Triggers {
                 System.out.println(String.format("led %s state %s", gpioPinDigitalStateChangeEvent.getPin(), gpioPinDigitalStateChangeEvent.getState()));
             }
         });
+
+        connectEncoder();
+
     }
 
     public GpioController getGpioController() {
         return gpioController;
+    }
+
+    private void connectEncoder(){
+        enRPin = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
+        enRPin.setShutdownOptions(true);
+        enRPin.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
+                System.out.println("Правый контакт");
+            }
+        });
+
+        enLPin = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN);
+        enLPin.setShutdownOptions(true);
+        enLPin.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
+                System.out.println("Левый контакт");
+            }
+        });
+
     }
 }
