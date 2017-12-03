@@ -6,6 +6,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Calendar;
 
 @Component
 public class Triggers {
@@ -22,7 +23,7 @@ public class Triggers {
         btn.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                System.out.printf("Кнопка " + gpioPinDigitalStateChangeEvent.getState());
+                System.out.println(String.format("%s Кнопка %s", Calendar.getInstance().getTime(), gpioPinDigitalStateChangeEvent.getState()));
             }
         });
 
