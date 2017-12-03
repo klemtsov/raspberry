@@ -62,7 +62,7 @@ public class Triggers {
         enRPin.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                System.out.println("Правый контакт");
+                System.out.println(String.format("Правый обработчик: правый контакт %s, левый контакт %s", gpioPinDigitalStateChangeEvent.getState(), enLPin.getState()));
             }
         });
 
@@ -71,7 +71,7 @@ public class Triggers {
         enLPin.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                System.out.println("Левый контакт");
+                System.out.println(String.format("Левый обработчик: правый контакт %s, левый контакт %s",  enRPin.getState(), gpioPinDigitalStateChangeEvent.getState()));
             }
         });
 
