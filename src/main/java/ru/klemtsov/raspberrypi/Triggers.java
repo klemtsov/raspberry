@@ -30,7 +30,7 @@ public class Triggers {
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
                 System.out.println(String.format("%s Кнопка %s", Calendar.getInstance().getTime(), gpioPinDigitalStateChangeEvent.getState()));
                 if (gpioPinDigitalStateChangeEvent.getState().isHigh()){
-                    led.toggle();
+                 //   led.toggle();
                 }
             }
         });
