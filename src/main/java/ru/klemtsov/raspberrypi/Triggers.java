@@ -23,22 +23,23 @@ public class Triggers {
         btn.setShutdownOptions(true);
         btn.setDebounce(50);
 
-        led = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_01,"LED1", PinState.LOW);
+        led = gpioController.provisionDigitalOutputPin(RaspiPin.GPIO_02,"LED1", PinState.LOW);
         led.setShutdownOptions(true);
         btn.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
                 System.out.println(String.format("%s Кнопка %s", Calendar.getInstance().getTime(), gpioPinDigitalStateChangeEvent.getState()));
-                if (gpioPinDigitalStateChangeEvent.getState().isHigh()){
-                    led.toggle();
-                }
+                led.setState(gpioPinDigitalStateChangeEvent.getState());
+                //if (gpioPinDigitalStateChangeEvent.getState().isHigh()){
+                 //   led.toggle();
+                //}
             }
         });
 
         led.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                System.out.println(String.format("led %s state %s", gpioPinDigitalStateChangeEvent.getPin(), gpioPinDigitalStateChangeEvent.getState());));
+                System.out.println(String.format("led %s state %s", gpioPinDigitalStateChangeEvent.getPin(), gpioPinDigitalStateChangeEvent.getState()));
             }
         });
     }
