@@ -17,7 +17,7 @@ public class Triggers {
     public void init(){
         System.out.printf("Запуск класса Triggers");
         gpioController = GpioFactory.getInstance();
-        btn = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_03, PinPullResistance.PULL_DOWN);
+        btn = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN);
         btn.setShutdownOptions(true);
         btn.addListener(new GpioPinListenerDigital() {
             @Override
@@ -25,6 +25,8 @@ public class Triggers {
                 System.out.printf("Кнопка " + gpioPinDigitalStateChangeEvent.getState());
             }
         });
+
+
 
     }
 
