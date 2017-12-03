@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class Triggers {
 
     private GpioController gpioController;
-    private GpioPinDigital btn;
+    private GpioPinDigitalInput btn;
 
     @PostConstruct
     public void init(){
@@ -20,6 +20,7 @@ public class Triggers {
         gpioController = GpioFactory.getInstance();
         btn = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN);
         btn.setShutdownOptions(true);
+        btn.setDebounce(100);
         btn.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
