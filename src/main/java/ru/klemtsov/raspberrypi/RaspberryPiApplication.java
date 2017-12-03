@@ -11,7 +11,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 @SpringBootApplication
 public class RaspberryPiApplication {
 
-	private static final GpioController gpioController = GpioFactory.getInstance();
 
 	public static void main(String[] args) {
 
@@ -20,8 +19,9 @@ public class RaspberryPiApplication {
 		springApplication.addListeners(new ApplicationListener<ContextClosedEvent>() {
 			@Override
 			public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
+				Triggers triggers =  contextClosedEvent.getApplicationContext().getBean(Triggers.class);
 				System.out.println("SHUTDOWN gpioController...");
-				gpioController.shutdown();
+				triggers.getGpioController().shutdown();
 			}
 		});
 		springApplication.addListeners( new ApplicationListener<ContextRefreshedEvent>() {
