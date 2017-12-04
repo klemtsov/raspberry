@@ -60,29 +60,23 @@ public class Triggers {
         enRPin = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
         enRPin.setShutdownOptions(true);
         enRPin.addListener(new GpioPinListenerDigital() {
-                               @Override
-                               public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                                   System.out.println(String.format("Правый обработчик: правый контакт %s, левый контакт %s", gpioPinDigitalStateChangeEvent.getState(), enLPin.getState()));
-                                   if (enRPin.isHigh()) {
-                                       if (enLPin.isHigh()) {
-                                           encoderCounter++;
-                                       } else {
-                                           encoderCounter--;
-                                       }
-                                       System.out.println(String.format("Счетчик = %d", encoderCounter));
-                                   }
-                               }
-                           }
+               @Override
+               public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
+                   if (enRPin.isHigh()) {
+                       if (enLPin.isHigh()) {
+                           encoderCounter++;
+                       } else {
+                           encoderCounter--;
+                       }
+                       System.out.println(String.format("Счетчик = %d", encoderCounter));
+                   }
+               }
+           }
         );
 
         enLPin = gpioController.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN);
         enLPin.setShutdownOptions(true);
-        enLPin.addListener(new GpioPinListenerDigital() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent gpioPinDigitalStateChangeEvent) {
-                System.out.println(String.format("Левый обработчик: правый контакт %s, левый контакт %s", enRPin.getState(), gpioPinDigitalStateChangeEvent.getState()));
-            }
-        });
+
 
     }
 }
