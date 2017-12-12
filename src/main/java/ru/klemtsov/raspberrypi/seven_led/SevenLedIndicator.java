@@ -163,7 +163,7 @@ import java.util.concurrent.atomic.AtomicInteger;
                 System.out.printf("Поток завершен\n");
                 break;
             }
-            setDigit(value.get());
+            setDigit(d);
             d++;
             if (d > 2){
                 d = 0;
