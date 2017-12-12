@@ -143,13 +143,13 @@ import java.util.concurrent.atomic.AtomicInteger;
                 break;
             case 1:
                 digits[0].setState(PinState.HIGH);
-                d = val % 100;
+                d = val % 100 / 10;
                 setIndicator(d);
                 digits[1].setState(PinState.LOW);
                 break;
             case 2:
                 digits[1].setState(PinState.HIGH);
-                d = val % 1000;
+                d = val % 1000 / 100;
                 setIndicator(d);
                 digits[2].setState(PinState.LOW);
                 break;
