@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.Calendar;
 
-//@Component
+@Component
 public class Triggers {
 
     private GpioController gpioController;
@@ -28,6 +28,7 @@ public class Triggers {
             sevenLedController.setValue(i);
             try {
                 Thread.sleep(300L);
+                System.out.printf("Вывод цифры %d\n");
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
