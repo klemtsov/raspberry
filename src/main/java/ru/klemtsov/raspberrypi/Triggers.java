@@ -27,7 +27,7 @@ public class Triggers {
         for (int i = 0; i < 1000; i++){
             sevenLedController.setValue(i);
             try {
-                Thread.sleep(300L);
+                Thread.sleep(1000L);
                 System.out.printf("Вывод цифры %4d\n", i);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -132,10 +132,15 @@ import java.util.concurrent.atomic.AtomicInteger;
     private void setDigit(int digit){
         int d = 0;
         clear();
+        System.out.printf("Число %4d", value.get());
+
         switch (digit){
             case 0:
                 digits[2].setState(PinState.HIGH);
+
+
                 d = value.get() % 10;
+
                 setIndicator(d);
                 digits[0].setState(PinState.LOW);
                 break;
@@ -152,6 +157,7 @@ import java.util.concurrent.atomic.AtomicInteger;
                 digits[2].setState(PinState.LOW);
                 break;
         }
+        System.out.printf("Выводим %1d", d);
     }
 
 
@@ -169,7 +175,7 @@ import java.util.concurrent.atomic.AtomicInteger;
                 d = 0;
             }
             try {
-                Thread.sleep(10L);
+                Thread.sleep(500L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
