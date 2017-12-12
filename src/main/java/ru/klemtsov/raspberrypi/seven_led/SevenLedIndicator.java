@@ -132,32 +132,29 @@ import java.util.concurrent.atomic.AtomicInteger;
     private void setDigit(int digit){
         int d = 0;
         clear();
-        System.out.printf("Передано Число %4d\n", value.get());
+        int val = value.get();
 
         switch (digit){
             case 0:
                 digits[2].setState(PinState.HIGH);
-
-
-                d = value.get() % 10;
-
+                d = val % 10;
                 setIndicator(d);
                 digits[0].setState(PinState.LOW);
                 break;
             case 1:
                 digits[0].setState(PinState.HIGH);
-                d = value.get() % 10;
+                d = val % 10;
                 setIndicator(d);
                 digits[1].setState(PinState.LOW);
                 break;
             case 2:
                 digits[1].setState(PinState.HIGH);
-                d = value.get() % 10;
+                d = val % 10;
                 setIndicator(d);
                 digits[2].setState(PinState.LOW);
                 break;
         }
-        System.out.printf("Выводим %1d на индикатор %1d\n", d, digit);
+        System.out.printf("\"Передано Число %4d: Выводим %1d на индикатор %1d\n",  d, digit);
     }
 
 
