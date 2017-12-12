@@ -111,7 +111,7 @@ import java.util.concurrent.atomic.AtomicInteger;
         int idx = 0;
         for (GpioPinDigitalOutput pin :
                 pins) {
-            pin.setState(data[idx] == 0 ? PinState.HIGH : PinState.LOW);
+            pin.setState(data[idx] == 0 ? PinState.LOW : PinState.HIGH);
             idx++;
             if (idx > MAX_LED_SEGMENTS) {
                 return;
