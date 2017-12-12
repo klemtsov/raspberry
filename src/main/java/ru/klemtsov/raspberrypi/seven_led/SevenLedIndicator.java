@@ -154,7 +154,7 @@ import java.util.concurrent.atomic.AtomicInteger;
                 digits[2].setState(PinState.LOW);
                 break;
         }
-        System.out.printf("\"Передано Число %4d: Выводим %1d на индикатор %1d\n",  d, digit);
+        System.out.printf("\"Передано Число %4d: Выводим %1d на индикатор %1d\n", val, d, digit);
     }
 
 
