@@ -172,7 +172,7 @@ import java.util.concurrent.atomic.AtomicInteger;
                 d = 0;
             }
             try {
-                Thread.sleep(1000L);
+                Thread.sleep(1L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
